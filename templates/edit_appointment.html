@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Appointment</title>
+</head>
+<body>
+    <h1>Edit Appointment</h1>
+    <form method="POST">
+        <label for="patient_id">Patient:</label>
+        <select id="patient_id" name="patient_id">
+            {% for patient in patients %}
+                <option value="{{ patient[0] }}" {% if appointment[1] == patient[0] %}selected{% endif %}>
+                    {{ patient[1] }}
+                </option>
+            {% endfor %}
+        </select><br><br>
+        
+        <label for="doctor_id">Doctor:</label>
+        <select id="doctor_id" name="doctor_id">
+            {% for doctor in doctors %}
+                <option value="{{ doctor[0] }}" {% if appointment[2] == doctor[0] %}selected{% endif %}>
+                    {{ doctor[1] }}
+                </option>
+            {% endfor %}
+        </select><br><br>
+        
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" value="{{ appointment[3] }}"><br><br>
+        
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" value="{{ appointment[4] }}"><br><br>
+        
+        <button type="submit">Update Appointment</button>
+    </form

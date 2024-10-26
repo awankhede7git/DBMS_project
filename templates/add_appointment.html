@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Appointment</title>
+</head>
+<body>
+    <h1>Schedule Appointment</h1>
+    <form action="/add_appointment" method="POST">
+        <label for="patient">Select Patient:</label>
+        <select id="patient" name="patient" required>
+            {% for patient in patients %}
+            <option value="{{ patient[0] }}">{{ patient[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="doctor">Select Doctor:</label>
+        <select id="doctor" name="doctor" required>
+            {% for doctor in doctors %}
+            <option value="{{ doctor[0] }}">{{ doctor[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br><br>
+
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required><br><br>
+
+        <input type="submit" value="Schedule Appointment">
+    </form>
+    <a href="/">Back to Home</a>
+</body>
+</html>

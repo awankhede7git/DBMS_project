@@ -3,38 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hospital Management</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Hospital Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+        .menu {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #000;
+            background-color: #f0f0f0;
+            width: 200px;
+        }
+        .menu a {
+            display: block;
+            margin: 15px 0;
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
     <h1>Hospital Management System</h1>
-    <a href="/add_patient">Add New Patient</a>
 
-    <h2>Patient List</h2>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Contact</th>
-            <th>Medical History</th>
-            <th>Actions</th>
-        </tr>
-        {% for patient in patients %}
-        <tr>
-            <td>{{ patient[1] }}</td>
-            <td>{{ patient[2] }}</td>
-            <td>{{ patient[3] }}</td>
-            <td>{{ patient[4] }}</td>
-            <td>{{ patient[5] }}</td>
-            <td>
-                <a href="/update_patient/{{ patient[0] }}">Update</a> |
-                <form action="/delete_patient/{{ patient[0] }}" method="POST" style="display:inline;">
-                    <button type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="container">
+        <div class="menu">
+            <h3>Patient Management</h3>
+            <a href="/add_patient">Add Patient</a>
+            <a href="/patients">View Patients</a>
+        </div>
+
+        <div class="menu">
+            <h3>Doctor Management</h3>
+            <a href="/add_doctor">Add Doctor</a>
+            <a href="/doctors">View Doctors</a>
+        </div>
+
+        <div class="menu">
+            <h3>Appointments</h3>
+            <a href="/add_appointment">Schedule Appointment</a>
+            <a href="/appointments">View Appointments</a>
+        </div>
+
+        <div class="menu">
+            <h3>Billing</h3>
+            <a href="/add_bill">Add Bill</a>
+            <a href="/bills">View Bills</a>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Bill</title>
+</head>
+<body>
+    <h1>Edit Billing Information</h1>
+    <form method="POST">
+        <label for="patient_id">Patient:</label>
+        <select id="patient_id" name="patient_id">
+            {% for patient in patients %}
+                <option value="{{ patient[0] }}" {% if bill[1] == patient[0] %}selected{% endif %}>
+                    {{ patient[1] }}
+                </option>
+            {% endfor %}
+        </select><br><br>
+        
+        <label for="total_amount">Total Amount:</label>
+        <input type="number" id="total_amount" name="total_amount" value="{{ bill[2] }}"><br><br>
+        
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" value="{{ bill[3] }}"><br><br>
+        
+        <button type="submit">Update Bill</button>
+    </form>
+</body>
+</html>

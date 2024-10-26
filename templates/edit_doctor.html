@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Doctor</title>
+</head>
+<body>
+    <h1>Edit Doctor Information</h1>
+    <form method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ doctor[1] }}"><br><br>
+        
+        <label for="specialization">Specialization:</label>
+        <input type="text" id="specialization" name="specialization" value="{{ doctor[2] }}"><br><br>
+        
+        <label for="contact">Contact:</label>
+        <input type="text" id="contact" name="contact" value="{{ doctor[3] }}"><br><br>
+        
+        <button type="submit">Update Doctor</button>
+    </form>
+</body>
+</html>
