@@ -152,14 +152,17 @@ def add_appointment():
             (patient_id, doctor_id, date, time)
         )
         db.commit()
-        return redirect(url_for('view_appointments'))
+        return redirect(url_for('home'))
 
-    cursor.execute("SELECT * FROM Patient")
+    # Fetch patient and doctor lists for the dropdown
+    cursor.execute("SELECT PatientID, Name FROM Patient")
     patients = cursor.fetchall()
-    cursor.execute("SELECT * FROM Doctor")
+
+    cursor.execute("SELECT DoctorID, Name FROM Doctor")
     doctors = cursor.fetchall()
 
     return render_template('add_appointment.html', patients=patients, doctors=doctors)
+ 
 
 # Route to update an appointment
 @app.route('/edit_appointment/<int:appointment_id>', methods=['GET', 'POST'])

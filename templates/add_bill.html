@@ -9,7 +9,7 @@
     <h1>Add Bill</h1>
     <form action="/add_bill" method="POST">
         <label for="patient">Select Patient:</label>
-        <select id="patient" name="patient" required>
+        <select id="patient" name="patient_id" required>
             {% for patient in patients %}
             <option value="{{ patient[0] }}">{{ patient[1] }}</option>
             {% endfor %}
