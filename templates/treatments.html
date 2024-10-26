@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treatments</title>
+</head>
+<body>
+    <h1>Treatments</h1>
+    <a href="/add_treatment">Add Treatment</a>
+    <table border="1">
+        <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Diagnosis</th>
+            <th>Medication</th>
+            <th>Procedure</th>
+            <th>Actions</th>
+        </tr>
+        {% for treatment in treatments %}
+        <tr>
+            <td>{{ treatment[1] }}</td>
+            <td>{{ treatment[2] }}</td>
+            <td>{{ treatment[3] }}</td>
+            <td>{{ treatment[4] }}</td>
+            <td>{{ treatment[5] }}</td>
+            <td>
+                <a href="/edit_treatment/{{ treatment[0] }}">Edit</a>
+                <a href="/delete_treatment/{{ treatment[0] }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Back to Home</a>
+</body>
+</html>

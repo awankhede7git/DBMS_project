@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Treatment</title>
+</head>
+<body>
+    <h1>Edit Treatment</h1>
+    <form action="/edit_treatment/{{ treatment[0] }}" method="POST">
+        
+        <label for="patient">Select Patient:</label>
+        <select id="patient" name="patient_id" required>
+            {% for patient in patients %}
+                <option value="{{ patient[0] }}" {% if patient[0] == treatment[1] %}selected{% endif %}>{{ patient[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="doctor">Select Doctor:</label>
+        <select id="doctor" name="doctor_id" required>
+            {% for doctor in doctors %}
+                <option value="{{ doctor[0] }}" {% if doctor[0] == treatment[2] %}selected{% endif %}>{{ doctor[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="diagnosis">Diagnosis:</label>
+        <input type="text" name="diagnosis" value="{{ treatment[3] }}" required><br><br>
+
+        <label for="medication">Medication:</label>
+        <input type="text" name="medication" value="{{ treatment[4] }}" required><br><br>
+
+        <label for="procedure">Procedure:</label>
+        <input type="text" name="procedure" value="{{ treatment[5] }}"><br><br>
+
+        <input type="submit" value="Update Treatment">
+    </form>
+    <a href="/treatments">Back to Treatments</a>
+</body>
+</html>

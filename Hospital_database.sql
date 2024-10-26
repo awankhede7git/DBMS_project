@@ -1,7 +1,10 @@
+-- Create the database
 CREATE DATABASE HospitalDB;
 
+-- Use the database
 USE HospitalDB;
 
+-- Create the Patient table
 CREATE TABLE Patient (
     PatientID INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(100),
@@ -11,6 +14,7 @@ CREATE TABLE Patient (
     MedicalHistory TEXT
 );
 
+-- Create the Doctor table
 CREATE TABLE Doctor (
     DoctorID INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(100),
@@ -19,6 +23,7 @@ CREATE TABLE Doctor (
     Availability BOOLEAN
 );
 
+-- Create the Appointment table
 CREATE TABLE Appointment (
     AppointmentID INT AUTO_INCREMENT PRIMARY KEY,
     PatientID INT,
@@ -29,6 +34,7 @@ CREATE TABLE Appointment (
     FOREIGN KEY (DoctorID) REFERENCES Doctor(DoctorID)
 );
 
+-- Create the Treatment table
 CREATE TABLE Treatment (
     TreatmentID INT AUTO_INCREMENT PRIMARY KEY,
     PatientID INT,
@@ -40,6 +46,15 @@ CREATE TABLE Treatment (
     FOREIGN KEY (DoctorID) REFERENCES Doctor(DoctorID)
 );
 
+-- Create the Ward table
+CREATE TABLE Ward (
+    WardID INT AUTO_INCREMENT PRIMARY KEY,
+    WardType VARCHAR(50),
+    BedCount INT,
+    Availability BOOLEAN
+);
+
+-- Create the Billing table
 CREATE TABLE Billing (
     BillID INT AUTO_INCREMENT PRIMARY KEY,
     PatientID INT,

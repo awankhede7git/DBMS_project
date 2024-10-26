@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Treatment</title>
+</head>
+<body>
+    <h1>Add Treatment</h1>
+    <form action="/add_treatment" method="POST">
+        <label for="patient">Select Patient:</label>
+        <select id="patient" name="patient_id" required>
+            {% for patient in patients %}
+            <option value="{{ patient[0] }}">{{ patient[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="doctor">Select Doctor:</label>
+        <select id="doctor" name="doctor_id" required>
+            {% for doctor in doctors %}
+            <option value="{{ doctor[0] }}">{{ doctor[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="diagnosis">Diagnosis:</label>
+        <input type="text" name="diagnosis" required><br><br>
+
+        <label for="medication">Medication:</label>
+        <input type="text" name="medication" required><br><br>
+
+        <label for="procedure">Procedure:</label>
+        <input type="text" name="procedure"><br><br>
+
+        <input type="submit" value="Add Treatment">
+    </form>
+    <a href="/treatments">Back to Treatments</a>
+</body>
+</html>

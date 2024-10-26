@@ -248,5 +248,79 @@ def edit_bill(bill_id):
 
     return render_template('edit_bill.html', bill=bill, patients=patients)
 
+# Route to view list of treatments
+@app.route('/treatments')
+def view_treatments():
+    cursor.execute("""
+        SELECT Treatment.TreatmentID, Patient.Name AS PatientName, Doctor.Name AS DoctorName,
+               Treatment.Diagnosis, Treatment.Medication, Treatment.Proc
+        FROM Treatment
+        JOIN Patient ON Treatment.PatientID = Patient.PatientID
+        JOIN Doctor ON Treatment.DoctorID = Doctor.DoctorID
+    """)
+    treatments = cursor.fetchall()
+    return render_template('treatments.html', treatments=treatments)
+
+# Route to add a treatment
+@app.route('/add_treatment', methods=['GET', 'POST'])
+def add_treatment():
+    if request.method == 'POST':
+        patient_id = request.form['patient_id']
+        doctor_id = request.form['doctor_id']
+        diagnosis = request.form['diagnosis']
+        medication = request.form['medication']
+        procedure = request.form['procedure']
+
+        cursor.execute(
+    "INSERT INTO Treatment (PatientID, DoctorID, Diagnosis, Medication, Proc) VALUES (%s, %s, %s, %s, %s)",
+    (patient_id, doctor_id, diagnosis, medication, procedure)
+)
+        db.commit()
+        return redirect(url_for('view_treatments'))
+
+    cursor.execute("SELECT PatientID, Name FROM Patient")
+    patients = cursor.fetchall()
+    cursor.execute("SELECT DoctorID, Name FROM Doctor")
+    doctors = cursor.fetchall()
+
+    return render_template('add_treatment.html', patients=patients, doctors=doctors)
+
+# Route to delete a treatment
+@app.route('/delete_treatment/<int:treatment_id>')
+def delete_treatment(treatment_id):
+    cursor.execute("DELETE FROM Treatment WHERE TreatmentID = %s", (treatment_id,))
+    db.commit()
+    return redirect(url_for('view_treatments'))
+
+# Route to edit a treatment
+@app.route('/edit_treatment/<int:treatment_id>', methods=['GET', 'POST'])
+def edit_treatment(treatment_id):
+    if request.method == 'POST':
+        patient_id = request.form['patient_id']
+        doctor_id = request.form['doctor_id']
+        diagnosis = request.form['diagnosis']
+        medication = request.form['medication']
+        procedure = request.form['procedure']
+
+        cursor.execute(
+    "UPDATE Treatment SET PatientID=%s, DoctorID=%s, Diagnosis=%s, Medication=%s, Proc=%s WHERE TreatmentID=%s",
+    (patient_id, doctor_id, diagnosis, medication, procedure, treatment_id)
+)
+
+        db.commit()
+        return redirect(url_for('view_treatments'))
+
+    cursor.execute("SELECT * FROM Treatment WHERE TreatmentID=%s", (treatment_id,))
+    treatment = cursor.fetchone()
+    cursor.execute("SELECT * FROM Patient")
+    patients = cursor.fetchall()
+    cursor.execute("SELECT * FROM Doctor")
+    doctors = cursor.fetchall()
+
+    return render_template('edit_treatment.html', treatment=treatment, patients=patients, doctors=doctors)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
+
+
