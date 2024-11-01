@@ -1,1 +1,2 @@
 # DBMS_project
+The Hospital Management System is a web-based application designed to streamline and manage the essential tasks of a hospital. Built with Flask as the backend framework and MySQL as the database, this system enables hospital staff to efficiently handle patient records, doctor information, appointments, billing, and treatments. The system provides a user-friendly interface and supports CRUD (Create, Read, Update, Delete) operations across all modules.

@@ -8,7 +8,7 @@ db = mysql.connector.connect(
     host="localhost",
     user="root",  
     password="AryaonSQL7#",  
-    database="HospitalDB"
+    database="HospitalDB2"
 )
 cursor = db.cursor()
 
